@@ -17,7 +17,7 @@ win = (my_hand == 0 && program_hand == 1) || (my_hand == 1 && program_hand == 2)
 lose = !(win)
 
 if my_hand == program_hand
-    puts "あいこで"
+    puts "あいこで..."
     puts "0（グー）1（チョキ）2（パー）"
     return true
     
@@ -42,7 +42,6 @@ end
 
 
 
-def acchimuite_hoi_time
 
 if @result == "win"
    puts "あっち向いて〜"
@@ -58,12 +57,14 @@ if @result == "win"
    puts "あなた:#{acchimuite_hoi[my_hand_2]}, 相手:#{acchimuite_hoi[program_hand_2]}"
    puts "-----------------"
    
+   rejanken = my_hand_2 != program_hand_2
+   
    if my_hand_2 == program_hand_2
       puts "あなたの勝ちです"
     
-  　elsif my_hand_2 != program_hand_2
-      puts "やり直しです"
-      return true
+  　elsif rejanken
+      puts "やり直しです、じゃんけん..."
+      @result = "rejanken"
     
    end
    
@@ -77,6 +78,8 @@ if @result == "lose"
    program_hand_2 = rand(3)
   
    acchimuite_hoi = ["上","下","左","右"]
+   
+   rejanken = my_hand_2 != program_hand_2
   
    puts "ホイ！"
    puts"-----------------"
@@ -86,18 +89,15 @@ if @result == "lose"
    if my_hand_2 == program_hand_2 
       puts "あなたの負けです"
       
-    elsif my_hand_2 != program_hand_2 
-      puts "やり直しです"
-      return true
-    　
+    elsif rejanken 
+      puts "やり直しです、じゃんけん..."
+      @result = "rejanken"
+      
    end
    
 end
 
-end
-
-next_game_2 = true
-
-while next_game_2
-   next_game_2 = acchimuite_hoi_time
+if @result == "rejanken"
+   janken_time 
+   
 end
